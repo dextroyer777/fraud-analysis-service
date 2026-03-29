@@ -4,7 +4,7 @@ Este projeto é um ecossistema de microserviço para análise de fraudes, desenv
 
 ## 🚀 Tecnologias Core & Acessos
 
-* **Spring Boot 3.2.x**: Framework base em **Java 21**, utilizando Virtual Threads para processamento de alto desempenho no processador Ryzen 5.
+* **Spring Boot 4.0.5**: Framework base em **Java 21**, utilizando Virtual Threads para processamento de alto desempenho no processador Ryzen 5.
 * **Apache Kafka & UI**: Mensageria para eventos de fraude (Confluent 7.5.0).
     * **URL de Gestão**: [http://localhost:8081](http://localhost:8081) (Kafka-UI).
 * **Prometheus**: Banco de dados de séries temporais que realiza o *scrape* das métricas do Spring Boot via Micrometer.
