@@ -28,3 +28,8 @@ O projeto implementa os três pilares da observabilidade:
    ```bash
    git clone [https://github.com/SEU_USUARIO/fraud-analysis-service.git](https://github.com/SEU_USUARIO/fraud-analysis-service.git)
    cd fraud-analysis-service
+2. Preparação da Infraestrutura
+Certifique-se de estar na raiz do projeto onde reside o arquivo `docker-compose.yml`. Suba os serviços de suporte (Kafka, Redis, Prometheus e Grafana) com o comando:
+
+```bash
+docker-compose up -d
