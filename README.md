@@ -2,27 +2,26 @@
 
 Este projeto é um ecossistema de microserviço para análise de fraudes, desenvolvido em **Java 21** com foco em alta performance e observabilidade em tempo real. A infraestrutura é totalmente containerizada, utilizando **Docker** para orquestrar mensageria, cache e monitoramento.
 
-## 🚀 Tecnologias Core
-* **Spring Boot 3.2.x**: Framework base para construção da aplicação, utilizando o ecossistema Spring para fornecer uma base robusta, autoconfigurável e pronta para produção.
-* **Java 21**: Utilização de recursos modernos da linguagem, como Virtual Threads, para otimizar o processamento assíncrono no seu processador Ryzen 5.
-* **Micrometer**: Fachada de métricas que expõe os dados internos da JVM e da aplicação para o Prometheus.
-* **Mensageria**: Apache Kafka (Confluent 7.5.0) para processamento de eventos de fraude.
-* **Cache**: Redis 7 (Alpine) para armazenamento temporário de alta performance.
-* **Observabilidade**: Prometheus & Grafana OSS (última versão) para monitoramento e dashboards.
-* **Ambiente**: openSUSE Leap 15.6 gerenciado via terminal com Vim e Docker Compose.
+## 🚀 Tecnologias Core & Acessos
+
+* **Spring Boot 3.2.x**: Framework base em **Java 21**, utilizando Virtual Threads para processamento de alto desempenho no processador Ryzen 5.
+* **Apache Kafka & UI**: Mensageria para eventos de fraude (Confluent 7.5.0).
+    * **URL de Gestão**: [http://localhost:8081](http://localhost:8081) (Kafka-UI).
+* **Prometheus**: Banco de dados de séries temporais que realiza o *scrape* das métricas do Spring Boot via Micrometer.
+    * **URL**: [http://localhost:9090](http://localhost:9090).
+* **Grafana OSS**: Plataforma de visualização onde os dashboards de JVM e Negócio foram configurados.
+    * **URL**: [http://localhost:3000](http://localhost:3000) (Login: `admin` / `admin`).
+* **Redis 7**: Cache em memória para otimização de consultas recorrentes.
+    * **Porta**: `6379`.
+* **Infraestrutura**: Ambiente containerizado rodando em **openSUSE Leap 15.6** no notebook **Lenovo IdeaPad 3**.
 
 ## 📊 Arquitetura de Observabilidade
 O projeto implementa os três pilares da observabilidade:
-1. **Métricas**: Coletadas via Micrometer e armazenadas no Prometheus.
-2. **Logs**: Centralizados no console dos containers e IDE.
-3. **Tracing**: Fluxo de eventos entre Spring Boot, Redis e Kafka.
+1. **Métricas**: Dados numéricos agregados (ex: Heap used, Uptime) visualizados no Grafana.
+2. **Rastreio (Tracing)**: Fluxo de eventos trafegando entre a API, Redis e o Broker do Kafka.
+3. **Logs**: Registros textuais de eventos específicos acessíveis via console dos containers.
 
 ## 🛠️ Como Executar
-
-### Pré-requisitos
-* Docker & Docker Compose instalado.
-* Java 21 (JDK).
-* Maven.
 
 ### Passo a Passo
 1. Clone o repositório:
