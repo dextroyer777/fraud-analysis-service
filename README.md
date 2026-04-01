@@ -59,3 +59,27 @@ graph TD
     Fraud -->|Publica 'fraude.validada'| Kafka
     Kafka -->|Lê resultado| Pedido
 ```
+```mermaid
+graph TD
+    subgraph "fraud-analysis-service"
+        Listener[Kafka Listener]
+        Engine[Fraud Analysis Engine\nService]
+        
+        subgraph "Rules Context (Strategy)"
+            Rule1[Blacklist Rule]
+            Rule2[Limit Rule]
+            Rule3[Geo Rule]
+        end
+        
+        RedisClient[Redis Client\nState/Fingerprint]
+        ExternalClient[Bureau API Client\nFeign/WebClient]
+
+        Listener --> Engine
+        Engine --> Rule1 & Rule2 & Rule3
+        Rule1 --> RedisClient
+        Rule3 --> ExternalClient
+        Engine --> Producer[Kafka Producer]
+    end
+```
+
+
