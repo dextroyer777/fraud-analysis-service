@@ -33,3 +33,28 @@ Certifique-se de estar na raiz do projeto onde reside o arquivo `docker-compose.
 
 ```bash
 docker-compose up -d
+
+# Arquitetura do Microserviço de Fraude
+
+Este projeto utiliza o padrão C4 Model para descrever a infraestrutura.
+
+```mermaid
+graph TD
+    subgraph "Ecossistema de Microsserviços"
+        Pedido[Microserviço: fluxo-pedido\nJava 21 / Spring Boot]
+        Fraud[Microserviço: fraud-analysis\nJava 21 / Spring Boot]
+        Kafka[Broker: Apache Kafka]
+        Redis[(Cache: Redis\nBlacklist/Fingerprint)]
+    end
+
+    subgraph "Serviços Externos"
+        Bureau[Bureau de Crédito\nEx: Serasa / Boa Vista]
+    end
+
+    Pedido -->|Publica 'pedido.criado'| Kafka
+    Kafka -->|Consome para análise| Fraud
+    Fraud -->|Consulta rápida| Redis
+    Fraud -->|Validação externa| Bureau
+    Fraud -->|Publica 'fraude.validada'| Kafka
+    Kafka -->|Lê resultado| Pedido
+```
