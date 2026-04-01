@@ -33,8 +33,9 @@ Certifique-se de estar na raiz do projeto onde reside o arquivo `docker-compose.
 
 ```bash
 docker-compose up -d
+```
 
-# Arquitetura do Microserviço de Fraude
+## Arquitetura do Microserviço de Fraude
 
 Este projeto utiliza o padrão C4 Model para descrever a infraestrutura.
 
